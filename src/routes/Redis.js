@@ -41,7 +41,6 @@ export const Redis = () => {
       laoding: true,
     });
     const playersData = await getTopPlayers();
-    console.log('playersData', playersData)
     setPlayers({
       ...players,
       loading: false,
