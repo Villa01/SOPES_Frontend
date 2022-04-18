@@ -23,8 +23,6 @@ export const Redis = () => {
     data: []
   });
 
-  
-
   // States to show or hide differrent sections.
   const [show, setShow] = useState({
     games: false,
@@ -59,10 +57,6 @@ export const Redis = () => {
     });
   }
 
-
-
-
-
   const getAllData = async () => {
     await getGames();
     await getPlayers();
@@ -77,11 +71,9 @@ export const Redis = () => {
 
 
   return (
-    <div >
-      <br></br>
+    <div className='mt-4'>
       <h1>Reporte Redis</h1>
-      <hr></hr>
-      <br></br>
+      <hr />
 
       <Top10Games setShow={setShow} show={show} games={games} />
 
