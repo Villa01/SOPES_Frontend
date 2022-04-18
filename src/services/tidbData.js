@@ -8,10 +8,9 @@ const url = 'https://sopes-p02.uc.r.appspot.com/'
 // const url = 'http://localhost:5000/'
 const getLast10 = () => {
     return new Promise((resolve) => {
-
         const socket = connect(url);
-        socket.emit('redis:last');
-        socket.on('redis:last', data => {
+        socket.emit('tidb:last');
+        socket.on('tidb:last10', data => {
             socket.disconnect();
             resolve(data);
         });
@@ -22,8 +21,8 @@ const getTopPlayers = () => {
     return new Promise((resolve) => {
 
         const socket = connect(url);
-        socket.emit('redis:top');
-        socket.on('redis:top', data => {
+        socket.emit('tidb:top');
+        socket.on('tidb:top', data => {
             socket.disconnect();
             resolve(data);
         });
@@ -34,9 +33,9 @@ const getPlayer = (player) => {
     return new Promise((resolve) => {
 
         const socket = connect(url);
-        socket.emit('redis:player', { player });
-        socket.on('redis:player', data => {
-            console.log(data)
+        socket.emit('tidb:player', { player });
+        socket.on('tidb:player', data => {
+
             socket.disconnect();
             resolve(data);
         })

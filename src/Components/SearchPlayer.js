@@ -1,10 +1,9 @@
 
 
 import React, { useState } from 'react'
-import { getPlayer } from '../services/redisData';
 import { PlayerTable } from './PlayerTable';
 
-export const SearchPlayer = ({ setShow, show }) => {
+export const SearchPlayer = ({ setShow, show, searchPlayer }) => {
     const [name, setName] = useState();
 
     const [player, setPlayer] = useState({
@@ -19,7 +18,7 @@ export const SearchPlayer = ({ setShow, show }) => {
             searched: true,
             laoding: true,
         });
-        const playerData = await getPlayer(name);
+        const playerData = await searchPlayer(name);
         const info = {
             ...playerData,
             name

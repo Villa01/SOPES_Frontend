@@ -3,7 +3,6 @@ import { isEmptyObj } from '../helpers/shared';
 import { Loader } from './Loader';
 
 export const PlayerTable = ({ player }) => {
-    console.log(player)
     const { data: { id, name, winner, broker, datetime } } = player;
     return (
         !player.loading ?

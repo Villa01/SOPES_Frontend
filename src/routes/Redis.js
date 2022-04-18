@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { SearchPlayer } from '../Components/SearchPlayer';
 import { Top10Games } from '../Components/Top10Games';
 import { Top10Players } from '../Components/Top10Players';
-import { getLast10, getTopPlayers } from '../services/redisData';
+import { getLast10, getPlayer, getTopPlayers } from '../services/redisData';
 
 
 // Refresh time to get the info. 
@@ -79,7 +79,7 @@ export const Redis = () => {
 
       <Top10Players setShow={setShow} show={show} players={players} />
 
-      <SearchPlayer setShow={setShow} show={show} />
+      <SearchPlayer setShow={setShow} show={show} searchPlayer={getPlayer}/>
     </div>
 
 
