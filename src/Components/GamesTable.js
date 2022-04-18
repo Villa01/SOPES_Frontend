@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { GamesTableItem } from './GamesTableItem'
+import { Loader } from './Loader';
 
 export const GamesTable = ({ header, rows }) => {
     const { data } = rows;
@@ -21,9 +22,7 @@ export const GamesTable = ({ header, rows }) => {
                     </tbody>
                 </table>
                 : 'Informacion no disponible'
-            : <div class="spinner-border" role="status">
-                <span class="sr-only"></span>
-            </div>
+            : <Loader/>
     )
 }
 

@@ -1,24 +1,35 @@
 
 
 import React, { useEffect, useState } from 'react';
-
-import { GamesTable } from '../Components/GamesTable';
-import { GenericTable } from '../Components/PlayersTable';
+import { SearchPlayer } from '../Components/SearchPlayer';
+import { Top10Games } from '../Components/Top10Games';
+import { Top10Players } from '../Components/Top10Players';
 import { getLast10, getTopPlayers } from '../services/redisData';
 
 
-
+// Refresh time to get the info. 
 const refreshTime = 10000;
 
 export const Redis = () => {
 
+  // State variables to control the information shown. 
   const [games, setGames] = useState({
     loading: false,
     data: []
   });
+
   const [players, setPlayers] = useState({
     loading: false,
     data: []
+  });
+
+  
+
+  // States to show or hide differrent sections.
+  const [show, setShow] = useState({
+    games: false,
+    players: false,
+    player: true,
   });
 
 
@@ -48,11 +59,16 @@ export const Redis = () => {
     });
   }
 
+
+
+
+
   const getAllData = async () => {
     await getGames();
     await getPlayers();
   }
 
+  // Gets the information every refreshTime period. 
   useEffect(() => {
     getAllData();
     const intervalID = setInterval(getAllData, refreshTime);
@@ -63,18 +79,15 @@ export const Redis = () => {
   return (
     <div >
       <br></br>
-      <h1>Redis Info</h1>
+      <h1>Reporte Redis</h1>
       <hr></hr>
       <br></br>
-      <section>
-        <h2>Últimos 10 juegos</h2>
-        <GamesTable header={['id', 'Game Name', 'Winner', 'Broker', 'Date', 'Players']} rows={games} />
-      </section>
 
-      <section>
-        <h2>Top 10 jugadores</h2>
-        <GenericTable header={['name', 'wins']} rows={players} />
-      </section>
+      <Top10Games setShow={setShow} show={show} games={games} />
+
+      <Top10Players setShow={setShow} show={show} players={players} />
+
+      <SearchPlayer setShow={setShow} show={show} />
     </div>
 
 
